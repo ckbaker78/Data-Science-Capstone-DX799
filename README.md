@@ -13,6 +13,8 @@ conclusions that keep the different outcomes and units explicit.
 | [Week 2](Week%202.ipynb) | OLS, ridge, lasso, elastic net; training-fold scaling; penalty tuning; shrinkage and coefficient paths |
 | [Week 3](Week%203.ipynb) | Forward/backward group selection; PCR; PLSR; component selection; comparison with full OLS |
 | [Week 4](Week%204.ipynb) | Logistic regression; unscaled/standard/min–max/robust scaling; regularization; threshold selection; ROC, precision–recall, calibration, and confusion matrices |
+| [Week 5](Week%205.ipynb) | Linear, degree-two polynomial and RBF support vector machines; kernel geometry; C/gamma tuning; support vectors; threshold trade-offs |
+| [Week 6](Week%206.ipynb) | Decision trees; depth/leaf/pruning regularization; random forests; tree visualization; held-out permutation importance |
 
 ## Dataset-specific questions
 
@@ -113,3 +115,52 @@ python3 -m jupyter nbconvert --to html "Week 1.ipynb"
 
 The Milestone One rubric/link mentioned in the assignment text was not supplied.
 The named weekly methods are covered; a final grade cannot be guaranteed.
+
+
+## Weeks 5 and 6: matched classification experiments
+
+Both new notebooks analyze **all three datasets** independently and retain Week
+4's target definitions and conservative predictor sets. Each is self-contained.
+To make exact kernel SVM cross-validation practical, both use the same uniform
+12,000-row sample of Loan_Default and the same random-priority 12,000-row sample
+of eligible resolved 2015 36-month LendingClub loans. They scan the full source
+when constructing the LendingClub sample. All 39 eligible bank records are kept.
+The loan splits contain 7,200 training, 2,400 validation and 2,400 test records;
+bank account groups remain separated across partitions and CV folds.
+
+These sampling choices differ from Week 4. Compare Week 5 and Week 6 methods on
+their matched populations; do not attribute Week 4 versus Week 5 score changes
+solely to the model family. The new notebooks use full one-hot encoding for
+categories, which avoids arbitrary reference-level distances for SVM kernels.
+
+Three-fold training CV tunes parameters by ROC AUC; independent validation AUC
+selects the family. Validation F1 selects an illustrative operating cutoff. The
+training-fitted model is frozen without a development refit, preserving the score
+scale used for threshold selection. Test metrics are reported for prespecified
+models without selecting another winner. SVM scores are margins, not calibrated
+probabilities. Both weeks include fixed-C logistic and prevalence baselines,
+ranking and decision metrics, confusion counts, and conditional bootstrap AUC
+intervals for loan samples. No reliable bank population interval is claimed.
+
+Week 5 also includes an explicitly exploratory training/validation-only balanced-class
+penalty check, added after the initial run. It does not replace the original
+selection or reuse test outcomes to evaluate another candidate.
+
+The saved interpretations are generated from executed results. Top summaries
+record the delivered run; if changing data or settings, regenerate those static
+summaries as well as running all cells. The new notebooks retain the original
+weekly instructions and the missing-rubric limitation. No submission or external
+publication is performed.
+
+
+### Weeks 5–6 verification
+
+Both notebooks were executed top to bottom from fresh kernels: **68 code cells
+and 39 saved figures**, with saved tables,
+figures, computed interpretations and data-specific conclusions. Input source and
+split code is matched across the two notebooks. Execution and notebook structure
+are checked separately from the plots. Saved figures are visually reviewed and
+long titles/dense diagnostics were revised for readability. HTML previews were
+exported; the browser tool reported that both in-app and Chrome browsers were
+unavailable, so full browser layout inspection could not be completed. Open the
+notebooks in the IDE to review the complete interactive notebook layout.
