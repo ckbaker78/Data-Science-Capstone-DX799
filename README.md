@@ -1,3 +1,59 @@
+# Comparative financial modeling: a recruiter review guide
+
+**Calvin Baker · Boston University DX799 · Academic modeling studies**
+
+[Rendered regression case](https://calvin-baker-data-science.netlify.app/projects/regression-and-regularization/) · [Repository](https://github.com/ckbaker78/Data-Science-Capstone-DX799)
+
+## Question and contribution
+
+How much model complexity is useful once validation, data quality and an independent test set are considered? I configured regression, regularization, subset/component selection, logistic models, SVM kernels and tree ensembles, keeping each dataset's target, preprocessing and evaluation separate.
+
+## Read by method
+
+| Study | Notebook | What to inspect |
+| --- | --- | --- |
+| Regression | [Regression notebook](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%201.ipynb) | Polynomial/interaction terms, baseline comparison, residual diagnostics |
+| Regularization | [Ridge, lasso and elastic net](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%202.ipynb) | Training-fold preprocessing, CV, coefficient paths, bootstrap comparison |
+| Feature selection | [Selection, PCR and PLSR](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%203.ipynb) | Group selection and component tuning; cases where compression is not helpful |
+| Probability modeling | [Logistic regression](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%204.ipynb) | Scaling, C selection, calibration, PR/ROC and threshold tradeoffs |
+| Kernel models | [SVM comparison](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%205.ipynb) | Kernel/C/gamma choices and training-to-validation overfit |
+| Tree ensembles | [Trees and forests](https://github.com/ckbaker78/Data-Science-Capstone-DX799/blob/main/Week%206.ipynb) | Depth/leaf/pruning constraints, forests and matched logistic benchmarks |
+
+Original notebook filenames remain unchanged so existing citations keep working.
+
+## Selected saved results
+
+- LendingClub pricing: selected regression test RMSE **3.064 percentage points** versus **4.299 pp** for a mean-only baseline, a **28.7%** reduction; test n=4,800.
+- Lasso retains **26/27** expanded terms and essentially matches OLS test error. The paired-bootstrap MAE-difference interval includes zero.
+- Feature selection retains **11/12** original predictor groups. PCR selects all **24** encoded components; PLSR selects **12**.
+- Logistic study: LendingClub test ROC AUC **0.674**, log loss **0.387** versus a **0.410** baseline. Its procedure differs from the later SVM/ensemble comparison.
+- SVM study: LendingClub RBF training/validation AUC **0.857/0.525**, illustrating overfit.
+- Matched tree/ensemble study: Loan_Default forest test AUC **0.646** versus fixed-logistic **0.591**; LendingClub forest/logistic both round to **0.633**.
+
+These are separate study-specific results, not a single leaderboard.
+
+## Reproduction
+
+The existing repository README provides full target definitions and sampling details. Saved outputs can be reviewed without executing the notebooks. For execution, use the repository's recorded Python **3.13.5** environment and pinned `requirements-notebooks.txt`:
+
+```bash
+git clone https://github.com/ckbaker78/Data-Science-Capstone-DX799.git
+cd Data-Science-Capstone-DX799
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-notebooks.txt
+```
+
+Keep the original inputs locally under `DATA/`: `accepted_2007_to_2018Q4.csv`, `Loan_Default.csv`, and `bank_customers.csv`. The large original files are required for execution; saved notebook outputs do not require them. Open a notebook, select the environment, restart the kernel and run all cells. Seed 42 is used. Large-file scans, CV and SVM searches can be expensive. Do not substitute a different dataset while presenting the saved results as unchanged.
+
+## Limits
+
+Historical random splits do not establish future-cohort performance. Loan_Default's status definition/window is undocumented. The bank exercise has only 39 date-valid records and is a methods demonstration. Pricing errors are percentage points, not default accuracy; AUC is ranking quality, not a selected operating rule. The portfolio update does not rerun model training or claim client deployment.
+
+---
+
+## Original course and reproduction documentation
+
 # DX799: all datasets in every weekly notebook
 
 Each notebook retains the original assignment instructions and now contains three
