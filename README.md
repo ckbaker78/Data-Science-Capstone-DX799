@@ -220,3 +220,60 @@ long titles/dense diagnostics were revised for readability. HTML previews were
 exported; the browser tool reported that both in-app and Chrome browsers were
 unavailable, so full browser layout inspection could not be completed. Open the
 notebooks in the IDE to review the complete interactive notebook layout.
+
+
+## Weeks 8 and 9: neighbors and gradient boosting
+
+[Week 8: K-Nearest Neighbors](Week%208.ipynb) and
+[Week 9: Gradient boosting](Week%209.ipynb) each analyze all three datasets
+independently. Loading, cohort construction, seed-42 sampling, predictors and
+partitions match Week 6: 12,000 rows per loan dataset (7,200 train / 2,400
+validation / 2,400 test), and 39 eligible bank records (24 / 7 / 8), with bank
+account groups separated across partitions and CV folds. The bank reference date
+remains September 26, 2026 for comparability.
+
+- **Week 8:** Manhattan and Euclidean distance, training-fold numeric scaling,
+  full one-hot encoding, k selection, uniform/distance votes, a controlled fixed-k
+  scaling comparison and validation-to-training neighborhood distances.
+- **Week 9:** gradient boosting with binary log loss; learning rate, estimator
+  count and tree depth; paired leaf-size/subsampling regularization profiles;
+  stage-wise training/validation loss; validation permutation importance.
+  The two regularization profiles change leaf size and subsampling together,
+  so their individual effects cannot be separated.
+
+Training CV tunes parameters by ROC AUC. Week 8 validation AUC selects the
+distance family; Week 9 has one prespecified boosting family. Validation F1
+selects each illustrative cutoff. Models remain frozen at their training fits;
+test results do not select another model. Both notebooks include fixed-C logistic
+and training-prevalence baselines, ranking/decision metrics, log loss, Brier score,
+confusion counts and conditional bootstrap AUC intervals for the loan samples.
+The stage-wise plots are diagnostic and do not retune the selected tree count.
+
+| Dataset | Week 8 model | Week 8 test AUC | Week 9 test AUC | Matched logistic AUC |
+| --- | --- | ---: | ---: | ---: |
+| Loan_Default | Euclidean KNN | 0.609 | 0.647 | 0.591 |
+| LendingClub resolved 2015 36-month loans | Euclidean KNN | 0.620 | 0.635 | 0.633 |
+| Bank checking-account demonstration | Manhattan KNN | 0.333 | 0.333 | 0.583 |
+
+These are descriptive results, not significance claims or a test-selected
+leaderboard. Scaling improved fixed-k Loan_Default CV AUC (0.561 to 0.581), but
+reduced LendingClub CV AUC (0.608 to 0.594). Stage-wise loss curves illustrate
+that training improvement can accompany validation deterioration. Bank estimates
+are unstable and do not support population or credit-risk conclusions.
+
+Both notebooks ran top to bottom from fresh kernels: **68 code cells and 42
+saved figures**, with no runtime errors. Notebook structure, matched data/split
+code, confusion-count totals and reported F1 values were checked. All saved
+figures were visually reviewed; HTML previews were generated, and the Week 8
+summary and chart placement were inspected in Safari. A complete Week 9 browser
+layout review was not completed because the user resumed activity in Safari;
+its saved figures were reviewed separately. Review previews are local under
+`../.analysis-work/weeks8-9/`.
+
+Use the existing pinned requirements and reproduction command with `Week 8.ipynb`
+or `Week 9.ipynb`. Each notebook includes source links, computed takeaways,
+method-specific interpretations and Milestone Two synthesis notes. Static
+summaries describe this saved run and should be revised if settings change.
+The Milestone Two rubric was not included with the supplied assignment text.
+Week 9 is prepared for **9.3 Peer Review: Week 9 Jupyter Notebook**; no course
+submission or external publication was performed.
