@@ -277,3 +277,40 @@ summaries describe this saved run and should be revised if settings change.
 The Milestone Two rubric was not included with the supplied assignment text.
 Week 9 is prepared for **9.3 Peer Review: Week 9 Jupyter Notebook**; no course
 submission or external publication was performed.
+
+## Weeks 10 and 11: exploratory clustering
+
+[Week 10: K-means](Week%2010.ipynb) and
+[Week 11: Density and hierarchical clustering](Week%2011.ipynb) each analyze all
+three datasets independently. Both reconstruct Week 9's loan cohorts and then
+use identical seed-42, 2,000-row loan subsamples and all 39 eligible bank records.
+Clustering uses numeric features only, with sample-fitted median imputation and
+standard scaling. Outcomes are excluded from distances and parameter selection;
+their cluster profiles are descriptive associations. The resolved LendingClub
+cohort and bank reference date remain unchanged from Week 9.
+
+- **Week 10:** k-means with 20 initializations; k=1–8 inertia/elbow curves;
+  k=2–8 silhouettes; unscaled, standard and robust representations; fixed-k
+  assignment agreement; initialization sensitivity; Euclidean, Manhattan and
+  cosine distance diagnostics; individual silhouettes and cluster profiles.
+- **Week 11:** DBSCAN neighbor-distance curves and eps/min_samples sensitivity;
+  core/border/noise counts and assigned coverage; single, complete, average and
+  Ward HAC; exact-k cuts, dendrograms and cophenetic correlations; comparisons
+  with the independently recomputed Week 10 k-means selection.
+
+Standard-scaled k-means selects k=2 for all three datasets, with silhouettes
+0.416 (Loan Default), 0.177 (LendingClub) and 0.488 (bank). Selected HAC uses
+Ward/k=2, Ward/k=3 and average/k=2 respectively. None of the tested LendingClub
+DBSCAN candidates meets the declared multi-cluster, minimum-size and coverage
+rules; its displayed single-cluster fit is explicitly illustrative. DBSCAN
+silhouette excludes noise and cannot be directly ranked against full-sample
+scores. Loan Default's term-driven clusters have nearly identical recorded
+status rates. The bank cohort remains a small record-level methods demonstration.
+
+Both notebooks execute top to bottom with saved outputs: 47 code cells and
+24 figures in total. All saved figures were visually inspected, and both HTML
+preview summaries were reviewed in Safari. The weeks include primary method
+references, Yellowdig initial-post drafts, limitations and Milestone Two notes.
+Use the existing pinned requirements and the notebook's execution command.
+The referenced Milestone Two rubric was not supplied. Course submission,
+Yellowdig posting and responses to actual peer posts remain separate actions.

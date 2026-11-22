@@ -1,0 +1,36 @@
+{
+  "snapshot_date": "2026-11-22",
+  "weeks": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "week_12": "Milestone compilation; user confirms no separate Week 12 notebook.",
+  "notebooks": [
+    {
+      "file": "Notebooks/Week 8.ipynb",
+      "sha256": "6714aed21829db70024b1ae941465045d913dad2305692a71576a39d7fbeaf4c",
+      "executed_code_cells": 34,
+      "saved_figures": 21
+    },
+    {
+      "file": "Notebooks/Week 9.ipynb",
+      "sha256": "e9508286fda817b6cfeb207dc163d6eef79246be129136204aed278f486a82e1",
+      "executed_code_cells": 34,
+      "saved_figures": 21
+    },
+    {
+      "file": "Notebooks/Week 10.ipynb",
+      "sha256": "2cb16a2e7fcd4f24ad98e100c1f99a6de6b0906cee7e7c05669d9687f6524c41",
+      "executed_code_cells": 22,
+      "saved_figures": 9
+    },
+    {
+      "file": "Notebooks/Week 11.ipynb",
+      "sha256": "2a92d183aac419ec598abc12b14f12de12600ee1b2b6da5cc686e269ab1defde",
+      "executed_code_cells": 25,
+      "saved_figures": 15
+    }
+  ]
+}
